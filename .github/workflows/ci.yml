@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_REPO: pierre-cm/prompteur
-      PROMPTEUR_BASE: /prompteur
+      PROMPTEUR_BASE: /prompteur-website
       PROMPTEUR_REPO: git@github.com:pierre-cm/prompteur.git
     steps:
       - name: Checkout
