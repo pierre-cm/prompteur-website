@@ -13,7 +13,7 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: process.argv.includes('dev') ? '' : process.env.PROMPTEUR_BASE
+			base: process.env.PUBLIC_BASE
 		}
 	}
 };
