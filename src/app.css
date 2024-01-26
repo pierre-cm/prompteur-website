@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fonts/Rubik.ttf') format('truetype-variations');
+}
+@font-face {
+  font-family: 'FiraCode';
+  src: url('/fonts/FiraCode.ttf') format('truetype-variations');
+}
+:root {
+  --text: #181818;
+  --border: #bebebe;
+  --light: #f1f1f1;
+  --primary: #32a2b6;
+  --primary-dark: #3c99ac;
+
+  --info: var(--primary);
+  --success: #79b900;
+  --warning: #ffa013;
+  --danger: #c22424;
+
+  --white: #ffffff;
+  --purple: #892ce0;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rubik';
+}
+a{
+  text-decoration: none;
+  color: var(--primary);
+}
+a:hover {
+  text-decoration: underline;
+  color: var(--purple);
+}
+pre, code {
+  font-family: 'FiraCode';
+}
+pre {
+  margin: 0;
+  background-color: #303235;
+  color: #ebebeb;
+  border-radius: 1rem;
+  padding: 1rem;
+  overflow: hidden;
+  min-width: 0px;
+}
+code {
+  display: block;
+  white-space: pre-wrap;
+  overflow: auto;
+  min-width: 0px;
+}
+.button {
+  background-color: #0000;
+  border: none;
+  font-size: 1.1rem;
+  border-radius: 0.33rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.button > a {
+  text-decoration: none;
+  color: var(--text);
+}
+.button.primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+.button.bordered {
+  border: 2px solid var(--primary);
+}
