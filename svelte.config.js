@@ -13,8 +13,10 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: process.env.PUBLIC_BASE,
-			relative: false
+			base: process.env.PUBLIC_BASE
+		},
+		prerender: {
+			entries: []
 		}
 	}
 };
