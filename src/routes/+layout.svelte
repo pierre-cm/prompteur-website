@@ -2,8 +2,6 @@
 	import '../app.css';
 	import Icon from '$lib/components/Icon.svelte';
 	import { page } from '$app/stores';
-	export const ssr = false;
-	export const prerender = true;
 	const currentPage = $derived($page.url.pathname);
 </script>
 
