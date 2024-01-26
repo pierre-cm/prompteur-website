@@ -23,7 +23,7 @@ if (isGit) {
 				'--filter=tree:0',
 				config.git.token
 					? `https://${config.git.token}@github.com/${config.git.repo}.git`
-					: `git@github.com:${config.git.repo}.git`,
+					: `https://github.com/${config.git.repo}.git`,
 				'.docs'
 			],
 			stdout: 'inherit'
@@ -51,3 +51,5 @@ const sitemap = yaml.load(sitemapStr) as Record<string, string>;
 for (const [src, target] of Object.entries(sitemap)) {
 	await Bun.write(target, Bun.file(`${repoPath}/${src}`));
 }
+
+export {};
