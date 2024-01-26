@@ -6,8 +6,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_site:
+  build:
     runs-on: ubuntu-latest
+    env:
+      GH_REPO: pierre-cm/prompteur
+      PROMPTEUR_BASE: /prompteur
+      PROMPTEUR_REPO: git@github.com:pierre-cm/prompteur.git
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,7 +32,7 @@ jobs:
           path: 'dist/'
 
   deploy:
-    needs: build_site
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       pages: write

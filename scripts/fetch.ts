@@ -41,10 +41,6 @@ if (isGit) {
 			stdout: 'inherit'
 		});
 		await proc.exited;
-		readdirSync('.docs/docs').forEach((file) => {
-			renameSync(resolve('.docs/docs', file), resolve('.docs', file));
-		});
-		rmSync('.docs/docs', { recursive: true, force: true });
 	}
 }
 const repoPath = isGit ? '.docs' : `${config?.repository}`;
@@ -52,7 +48,6 @@ const repoPath = isGit ? '.docs' : `${config?.repository}`;
 const sitemapStr = await Bun.file('sitemap.yaml').text();
 const sitemap = yaml.load(sitemapStr) as Record<string, string>;
 
-console.log(sitemap);
 for (const [src, target] of Object.entries(sitemap)) {
 	await Bun.write(target, Bun.file(`${repoPath}/${src}`));
 }
