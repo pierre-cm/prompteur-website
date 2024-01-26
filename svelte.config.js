@@ -14,9 +14,6 @@ const config = {
 		}),
 		paths: {
 			base: process.env.PUBLIC_BASE
-		},
-		prerender: {
-			entries: []
 		}
 	}
 };
