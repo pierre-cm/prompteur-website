@@ -24,6 +24,7 @@ jobs:
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
+          PUBLIC_BASE: '/${{ github.event.repository.name }}'
         run: |
           bun run build
       - name: Upload Artifacts

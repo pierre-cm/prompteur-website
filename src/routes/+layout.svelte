@@ -2,9 +2,14 @@
 	import '../app.css';
 	import Icon from '$lib/components/Icon.svelte';
 	import { page } from '$app/stores';
+	import { PUBLIC_BASE } from '$env/static/public';
 
 	const currentPage = $derived($page.url.pathname);
 </script>
+
+<svelte:head>
+	<base href={PUBLIC_BASE} />
+</svelte:head>
 
 <div id="app">
 	<header>
