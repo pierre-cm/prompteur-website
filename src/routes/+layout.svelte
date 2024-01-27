@@ -5,6 +5,7 @@
 	import { PUBLIC_BASE } from '$env/static/public';
 
 	const currentPage = $derived($page.url.pathname.replace(new RegExp(`^/${PUBLIC_BASE}`), ''));
+	console.log($page.url.pathname, PUBLIC_BASE);
 </script>
 
 <div id="app">
