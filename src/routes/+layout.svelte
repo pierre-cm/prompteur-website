@@ -4,8 +4,7 @@
 	import { page } from '$app/stores';
 	import { PUBLIC_BASE } from '$env/static/public';
 
-	const currentPage = $derived($page.url.pathname.replace(new RegExp(`^/${PUBLIC_BASE}`), ''));
-	console.log($page.url.pathname, PUBLIC_BASE);
+	const currentPage = $derived($page.url.pathname.replace(new RegExp(`^${PUBLIC_BASE}`), ''));
 </script>
 
 <div id="app">
@@ -22,7 +21,7 @@
 			</nav>
 			<div class="social">
 				<a href="https://github.com/pierre-cm/prompteur" target="_blank"><Icon name="github" /></a>
-				<a href="https://npmjs.com" target="_blank"><Icon name="npm" /></a>
+				<a href="https://www.npmjs.com/package/prompteur" target="_blank"><Icon name="npm" /></a>
 			</div>
 		</div>
 	</header>
