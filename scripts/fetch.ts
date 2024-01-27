@@ -1,46 +1,20 @@
 import yaml from 'js-yaml';
-import { readdirSync, renameSync, existsSync, rmSync } from 'fs';
-import { resolve, extname } from 'path';
+import { existsSync } from 'fs';
+import { extname } from 'path';
 import config from '../config';
+import { $ } from 'bun';
 
 const isGit = extname(config?.repository || '') === '.git';
 if (isGit) {
 	if (existsSync('.docs')) {
-		let proc = Bun.spawn({
-			cwd: '.docs',
-			cmd: ['git', 'pull'],
-			stdout: 'inherit'
-		});
-		await proc.exited;
+		await $`cd .docs && git pull`;
 	} else {
-		console.log('GH_TOKEN found ?', !!config?.git?.token);
-		let proc = Bun.spawn({
-			cmd: [
-				'git',
-				'clone',
-				'-n',
-				'--depth=1',
-				'--filter=tree:0',
-				config.git.token
-					? `https://${config.git.token}@github.com/${config.git.repo}.git`
-					: `https://github.com/${config.git.repo}.git`,
-				'.docs'
-			],
-			stdout: 'inherit'
-		});
-		await proc.exited;
-		proc = Bun.spawn({
-			cwd: '.docs',
-			cmd: ['git', 'sparse-checkout', 'set', '--no-cone', 'README.md'],
-			stdout: 'inherit'
-		});
-		await proc.exited;
-		proc = Bun.spawn({
-			cwd: '.docs',
-			cmd: ['git', 'checkout'],
-			stdout: 'inherit'
-		});
-		await proc.exited;
+		const repoUrl = config.git.token
+			? `https://${config.git.token}@github.com/${config.git.repo}.git`
+			: `https://github.com/${config.git.repo}.git`;
+		await $`git clone -n --depth=1 --filter=tree:0 ${repoUrl} .docs`;
+		await $`cd .docs && git sparse-checkout set --no-cone README.md`;
+		await $`cd .docs && git checkout`;
 	}
 }
 const repoPath = isGit ? '.docs' : `${config?.repository}`;
