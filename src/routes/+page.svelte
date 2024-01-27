@@ -47,8 +47,8 @@ prompteur.start()
 			content to life with minimal effort.
 		</p>
 		<div class="buttons">
-			<a class="button primary" href="/documentation">Get started</a>
-			<a class="button bordered" href="/try">Try it!</a>
+			<a class="button primary" href="documentation">Get started</a>
+			<a class="button bordered" href="try">Try it!</a>
 		</div>
 	</div>
 	<div class="preview">

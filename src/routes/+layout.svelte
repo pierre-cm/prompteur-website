@@ -2,20 +2,22 @@
 	import '../app.css';
 	import Icon from '$lib/components/Icon.svelte';
 	import { page } from '$app/stores';
-	const currentPage = $derived($page.url.pathname);
+	import { PUBLIC_BASE } from '$env/static/public';
+
+	const currentPage = $derived($page.url.pathname.replace(new RegExp(`^/${PUBLIC_BASE}`), ''));
 </script>
 
 <div id="app">
 	<header>
 		<div class="logo">
-			<a href="/"><img src="prompteur.svg" alt="logo" /></a>
+			<a href={PUBLIC_BASE}><img src="prompteur.svg" alt="logo" /></a>
 		</div>
-		<div class="title"><a href="/">Prompteur</a></div>
+		<div class="title"><a href={PUBLIC_BASE}>Prompteur</a></div>
 		<div class="menu">
 			<nav>
-				<a href="/documentation" class:active={currentPage === `/documentation`}>Documentation</a>
-				<a href="/examples" class:active={currentPage === `/examples`}>Examples</a>
-				<a href="/try" class:active={currentPage === `/try`}>Try it!</a>
+				<a href="documentation" class:active={currentPage === `/documentation`}>Documentation</a>
+				<a href="examples" class:active={currentPage === `/examples`}>Examples</a>
+				<a href="try" class:active={currentPage === `/try`}>Try it!</a>
 			</nav>
 			<div class="social">
 				<a href="https://github.com/pierre-cm/prompteur" target="_blank"><Icon name="github" /></a>
