@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "bun run fetch && vite dev",
     "fetch": "bun run scripts/fetch.ts",
     "build": "bun run fetch && vite build",
     "preview": "vite preview",
@@ -33,7 +33,7 @@
   "dependencies": {
     "highlight.js": "^11.9.0",
     "marked": "^11.1.1",
-    "prompteur": "^1.0.0"
+    "prompteur": "^1.0.8"
   },
   "trustedDependencies": ["prompteur"]
 }

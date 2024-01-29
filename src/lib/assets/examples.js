@@ -39,7 +39,7 @@ const print = async (n) => {
 	example3: {
 		code: `const p = new Prompteur({
   elt: document.getElementById("example3"),
-  text: '$ bun add pierre-cm/prompteur ...',
+  text: '$ bun init ..',
   speed: 20,
   render: (f, { text }) => {
     const lines = text.split('\\n');
@@ -84,10 +84,12 @@ p.start();`,
 To get started, run:
   <span style='color:#1276a1'>bun run index.ts</span>
 
-$ bun install
-bun install v1.0.21 (837cbd60)
+$ bun add prompteur
+<span style='font-weight:bold'>bun add</span> v1.0.25 (a8ff7be6)
 
-Checked 7 installs across 8 packages (no changes) [17.00ms]
+  <span style='color:#5c8b09'>installed</span> <span style='font-weight:bold'>prompteur</span>@1.0.6
+
+  <span style='color:#5c8b09'>1</span> package installed [<span style='font-weight:bold'>817.00ms</span>]
 $ bun run index.ts 
 Hello via Bun!
 `

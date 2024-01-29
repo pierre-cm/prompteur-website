@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Markdown from '$lib/components/Markdown.svelte';
-	import md from '$lib/assets/home.md?raw';
+	import md from '$lib/assets/imported/home.md?raw';
 </script>
 
 <div class="page">

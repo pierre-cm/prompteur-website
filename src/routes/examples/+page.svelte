@@ -7,6 +7,7 @@
 	import bash from 'highlight.js/lib/languages/bash';
 	import examples from '$lib/assets/examples';
 	import rick from '$lib/assets/rick.txt?raw';
+	import Code from '$lib/components/Code.svelte';
 
 	hljs.registerLanguage('js', javascript);
 	hljs.registerLanguage('shell', shell);
@@ -90,6 +91,9 @@
 			}
 		});
 		p.start();
+		setInterval(() => {
+			p.start();
+		}, 20000);
 	};
 
 	// Ascii meme
@@ -129,7 +133,7 @@
 				<h1>Basic example</h1>
 				<p bind:this={ex1_elt}></p>
 			</div>
-			<pre class="right">{@html hljs?.highlight(ex1_code, { language: 'js' })?.value}</pre>
+			<div class="right"><Code content={ex1_code} lang="javascript" /></div>
 		</div>
 		<!-- Example 2 -->
 		<div class="example">
@@ -137,7 +141,7 @@
 				<h1>Typewriter effect</h1>
 				<h2>This app is <span class="ex2" bind:this={ex2_elt} /><span>{ex2_cursor}</span></h2>
 			</div>
-			<pre class="right">{@html hljs?.highlight(ex2_code, { language: 'js' })?.value}</pre>
+			<div class="right"><Code content={ex2_code} lang="javascript" /></div>
 		</div>
 		<!-- Example 3 -->
 		<div class="example">
@@ -152,7 +156,7 @@
 					<pre class="terminal" bind:this={ex3_elt}></pre>
 				</div>
 			</div>
-			<pre class="right">{@html hljs?.highlight(ex3_code, { language: 'js' })?.value}</pre>
+			<div class="right"><Code content={ex3_code} lang="javascript" /></div>
 		</div>
 		<!-- Meme -->
 		<div class="meme"><pre class="asciiImg" bind:this={ex4_elt}></pre></div>
@@ -188,7 +192,6 @@
 			.left {
 				width: 24rem;
 				max-width: 30rem;
-				// min-height: 13rem;
 				h1 {
 					text-decoration: underline;
 				}
@@ -207,16 +210,17 @@
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
 	}
-	pre {
-		font-size: 0.8rem;
+	.right {
+		font-size: 0.9rem;
 		margin: 0;
 		max-width: calc(100vw - 4rem);
 	}
 	.terminal {
-		display: flex;
-		flex-direction: column;
+		overflow: hidden;
+		min-height: 31rem;
+		border-bottom-left-radius: 1rem;
+		border-bottom-right-radius: 1rem;
 		.bar {
-			// width: 100%;
 			height: 1.55rem;
 			border-top-left-radius: 1rem;
 			border-top-right-radius: 1rem;
@@ -241,15 +245,14 @@
 			}
 		}
 		pre {
-			border-top-left-radius: 0;
-			border-top-right-radius: 0;
-			min-height: 29rem;
-			// max-height: 20rem;
-			// overflow-y: scroll;
+			overflow-x: scroll;
+			color: var(--light);
+			background-color: #303235;
+			margin: 0;
+			padding: 0.5rem;
 		}
 	}
 	.meme {
-		// background-color: #fff1df;
 		display: flex;
 		justify-content: center;
 		.asciiImg {

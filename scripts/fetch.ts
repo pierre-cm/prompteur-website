@@ -2,7 +2,7 @@ import yaml from 'js-yaml';
 import { existsSync } from 'fs';
 import { extname } from 'path';
 import config from '../config';
-import { $ } from 'bun';
+import { $, BunFile } from 'bun';
 
 const isGit = extname(config?.repository || '') === '.git';
 if (isGit) {
@@ -20,10 +20,15 @@ if (isGit) {
 const repoPath = isGit ? '.docs' : `${config?.repository}`;
 
 const sitemapStr = await Bun.file('sitemap.yaml').text();
-const sitemap = yaml.load(sitemapStr) as Record<string, string>;
+const sitemap = yaml.load(sitemapStr) as Record<string, any>;
 
-for (const [src, target] of Object.entries(sitemap)) {
-	await Bun.write(target, Bun.file(`${repoPath}/${src}`));
+for (const [src, doc] of Object.entries(sitemap)) {
+	let target: BunFile | string = Bun.file(`${repoPath}/${src}`);
+	if (doc?.start) {
+		let content = await target.text();
+		target = content.slice(content.indexOf(doc.start));
+	}
+	await Bun.write(doc.target, target);
 }
 
 export {};

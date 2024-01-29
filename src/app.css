@@ -37,15 +37,6 @@ a:hover {
 pre, code {
   font-family: 'FiraCode';
 }
-pre {
-  margin: 0;
-  background-color: #303235;
-  color: #ebebeb;
-  border-radius: 1rem;
-  padding: 1rem;
-  overflow: hidden;
-  min-width: 0px;
-}
 code {
   display: block;
   white-space: pre-wrap;

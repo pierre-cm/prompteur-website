@@ -1,1 +1,3 @@
-README.md: src/lib/assets/home.md
+README.md:
+  target: src/lib/assets/imported/home.md
+  start: "## Installation"

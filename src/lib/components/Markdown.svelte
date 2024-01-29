@@ -4,6 +4,7 @@
 	import javascript from 'highlight.js/lib/languages/javascript';
 	import shell from 'highlight.js/lib/languages/shell';
 	import bash from 'highlight.js/lib/languages/bash';
+	import Code from './Code.svelte';
 
 	hljs.registerLanguage('javascript', javascript);
 	hljs.registerLanguage('shell', shell);
@@ -27,11 +28,6 @@
 			codespan: (text) => {
 				return `<code>${text}</code>`;
 			},
-			code: (code, info, _escaped) => {
-				const highlighted = info && ['javascript', 'shell', 'bash'].includes(info);
-				if (highlighted) return `<pre>${hljs?.highlight(code, { language: info })?.value}</pre>`;
-				else return `<pre>${code}<pre>`;
-			},
 			blockquote: (quote) => {
 				const matchAlert = quote.match(
 					new RegExp(`^<p>\\[!(${ALERT_KEYWORDS.join('|')})\\]<br>(.*)</p>`, 's')
@@ -47,12 +43,17 @@
 	});
 
 	const { input = '' } = $props<{ input?: string }>();
-
-	const markdown = $derived(marked.parse(input));
+	const mdTokens = marked.lexer(input);
 </script>
 
 <div class="markdown">
-	{@html markdown}
+	{#each mdTokens as t}
+		{#if t.type === 'code'}
+			<Code content={t.text} lang={t.lang} />
+		{:else}
+			{@html marked.parse(t.raw)}
+		{/if}
+	{/each}
 </div>
 
 <style>
@@ -69,9 +70,6 @@
 		margin-left: 0;
 		border-left: 3px solid var(--primary);
 		padding: 0.5rem 0.5rem 0.5rem 1rem;
-		/* border-radius: 1rem; */
-		/* border-top-right-radius: 1rem;
-		border-bottom-right-radius: 1rem; */
 		background-color: var(--light);
 	}
 	:global(blockquote.alertquote p) {

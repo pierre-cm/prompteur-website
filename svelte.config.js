@@ -13,7 +13,7 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: process.env.PUBLIC_BASE
+			base: process.env.PUBLIC_BASE === '/' ? '' : process.env.PUBLIC_BASE
 		}
 	}
 };
